@@ -21,5 +21,6 @@ class Bag:
     def exchange(self, player, exchanges):
         for letter in exchanges:
             player.pieces.remove(letter)
-            self.letters.append("swapped")
+            self.letters.append(letter)
+            player.pieces.append(self.draw())
 

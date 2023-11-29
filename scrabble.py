@@ -4,6 +4,7 @@ from player import Player
 from bag import Bag
 import random
 
+
 def draw_to_seven(player, bag):
     while len(player.pieces) < 7:
         if len(bag) == 0:
@@ -12,19 +13,26 @@ def draw_to_seven(player, bag):
         player.pieces.append(bag.pop(index))
 
 
-
 def play():
     board = Board()
-    bag = Bag
+    bag = Bag()
     players = []
     for i in range(2):
         new_player = Player(input(f"Hello Player {i+1}, what's your name? "))
-        print(id(new_player))
         bag.draw_to_seven(new_player)
         players.append(new_player)
     current_player_index = 0
-    print(players[0].pieces)
-    bag.exchange(players[0], input("which letter y'all wanna swap"))
+    board.place_word("hello", [1, 1], "h")
+    print(board.temp_state)
+    board.update_board()
+    players[0].pieces = ["h", "e", "l", "l", "o", "y", "n"]
+    print(board.is_placeable("egg", [2, 0], "v", players[0]))
+    print(board.is_placeable("honey", [1, 1], "v", players[0]))
+    print(board.is_placeable("honey", [1, 1], "h", players[0]))
+    board.place_word("hello", [1, 1], "v")
+    board.update_board()
+    print(board.is_placeable("egg", [0, 2], "h", players[0]))
+
     while True:
 
 
