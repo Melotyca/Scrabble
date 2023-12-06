@@ -23,16 +23,13 @@ def play():
         players.append(new_player)
     current_player_index = 0
     board.place_word("hello", [1, 1], "h")
-    print(board.temp_state)
-    board.update_board()
-    players[0].pieces = ["h", "e", "l", "l", "o", "y", "n"]
-    print(board.is_placeable("egg", [2, 0], "v", players[0]))
-    print(board.is_placeable("honey", [1, 1], "v", players[0]))
-    print(board.is_placeable("honey", [1, 1], "h", players[0]))
-    board.place_word("hello", [1, 1], "v")
-    board.update_board()
-    print(board.is_placeable("egg", [0, 2], "h", players[0]))
-
+    players[0].pieces = ["r", "o", "a", "d", "t", "a", "d"]
+    board.move("ROAD", [2, 3], "h", players[0], bag)
+    print(board.state)
+    print(players[0].pieces)
+    board.move("TOAD", [3, 2], "v", players[0], bag)
+    print(board.state)
+    print(players[0].pieces)
     while True:
 
 
