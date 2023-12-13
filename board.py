@@ -168,8 +168,26 @@ class Board:
         score *= word_multiplier
         return score
 
-    def move(self, word, position, orientation, player, bag):
+    def move(self, word, position, orientation, player, bag, first=False):
+        if first is True:
+            if orientation == "h":
+                if position[0] != 7:
+                    return
+                permitted = False
+                for i in range(position[1], position[1]+len(word)):
+                    if i == 7:
+                        permitted = True
+                if not permitted:
+                    return
+            else:
+                if position[1] != 7:
+                    return
+                permitted = False
+                for i in range(position[0], position[0]+len(word)):
+                    if i == 7:
+                        permitted = True
+                if not permitted:
+                    return
         self.temp_state = self.state.copy()
         self.place_if_possible(word.lower(), position, orientation, player)
         player.points += self.calculate_score(bag)
-        bag.draw_to_seven(player)
